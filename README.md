@@ -2,11 +2,11 @@
 
 ## 📖 Giới thiệu
 
-**Github của sinh viên:** Đặng Quốc Cường
-**Lớp:** 66ANM1
-**Học phần:** Nền tảng Phát triển Web
-**Mã học phần**: CSE391
-**Giảng viên: [Tạ Chí Hiếu](https://github.com/hieutachi/CCC_Frontend)**
+**Github của sinh viên:** Đặng Quốc Cường<br>
+**Lớp:** 66ANM1<br>
+**Học phần:** Nền tảng Phát triển Web<br>
+**Mã học phần**: CSE391<br>
+**Giảng viên: [Tạ Chí Hiếu](https://github.com/hieutachi/CCC_Frontend)**<br>
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black)
