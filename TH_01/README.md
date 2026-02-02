@@ -1,8 +1,9 @@
+## THỰC HÀNH 01
 
-**Học phần:** Nền tảng phát triển Web
+**Học phần:** Nền tảng phát triển Web <br>
 **Đối tượng:** K66
 
-## BÀI TẬP 01: Làm quen GITHUB
+### BÀI TẬP 01: Làm quen GITHUB
 
 **Mục tiêu:** Thiết lập môi trường lưu trữ bài tập và làm quen lệnh Git cơ bản.
 
@@ -25,7 +26,7 @@
     - Tạo cấu trúc dự án, tạo nhánh, đồng bộ dữ liệu.
         
 
-## BÀI TẬP 02: Dựng Layout Web (Khóa học)
+### BÀI TẬP 02: Dựng Layout Web (Khóa học)
 
 **Yêu cầu:**
 
@@ -38,7 +39,7 @@
 - **Gợi ý:** Sử dụng thư viện icon (Font Awesome, Bootstrap Icon...) cho các biểu tượng.
     
 
-## BÀI TẬP 03: HTML Table (Bảng điểm)
+### BÀI TẬP 03: HTML Table (Bảng điểm)
 
 **Yêu cầu:**
 
@@ -49,7 +50,7 @@
 - Chú ý xử lý các ô gộp dòng/cột (colspan, rowspan) phức tạp ở phần tiêu đề (Exam, 2nd Exam, Final Grade).
     
 
-## BÀI TẬP 04: HTML Form (Thông tin nhân viên)
+### BÀI TẬP 04: HTML Form (Thông tin nhân viên)
 
 **Yêu cầu:**
 
@@ -66,7 +67,7 @@
     - Optional Info: Notes (Rich text editor UI), Preferred Shift (Checkbox), Captcha.
         
 
-## BÀI TẬP 05: Giao diện Quản lý nhân sự (HR Management)
+### BÀI TẬP 05: Giao diện Quản lý nhân sự (HR Management)
 
 **Yêu cầu:** Xây dựng giao diện danh sách và thêm mới nhân viên (Trang 4).
 
