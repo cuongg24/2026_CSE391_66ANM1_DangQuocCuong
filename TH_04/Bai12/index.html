@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1.2 - Bộ Lọc & Tìm Kiếm</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .form-group, .filter-group { margin-bottom: 15px; padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd; }
+        input, select, button { padding: 5px; margin-right: 10px; margin-bottom: 5px; }
+        button { cursor: pointer; padding: 5px 15px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        table, th, td { border: 1px solid #ccc; }
+        th, td { padding: 10px; text-align: center; }
+        
+        
+        th.sortable { cursor: pointer; background-color: #e2e2e2; }
+        th.sortable:hover { background-color: #d0d0d0; }
+        
+        .row-warning { background-color: yellow; }
+        .stats { margin-top: 20px; font-weight: bold; }
+        .no-result { font-style: italic; color: red; }
+    </style>
+</head>
+<body>
+
+    <h2>Quản lý điểm sinh viên (Có Lọc & Tìm kiếm realtime)</h2>
+
+    <div class="form-group">
+        <label for="hoTen">Họ tên:</label>
+        <input type="text" id="hoTen" placeholder="Nhập họ tên sinh viên">
+
+        <label for="diem">Điểm (0-10):</label>
+        <input type="number" id="diem" min="0" max="10" step="0.1" placeholder="Nhập điểm">
+
+        <button id="btnThem">Thêm</button>
+    </div>
+
+    <div class="filter-group">
+        <label for="timKiem">Tìm kiếm:</label>
+        <input type="text" id="timKiem" placeholder="Gõ tên để tìm...">
+
+        <label for="locXepLoai">Lọc xếp loại:</label>
+        <select id="locXepLoai">
+            <option value="Tất cả">Tất cả</option>
+            <option value="Giỏi">Giỏi</option>
+            <option value="Khá">Khá</option>
+            <option value="Trung bình">Trung bình</option>
+            <option value="Yếu">Yếu</option>
+        </select>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Họ tên</th>
+                <th class="sortable" id="colDiem" title="Click để sắp xếp">Điểm <span id="sortArrow"></span></th>
+                <th>Xếp loại</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody id="dsSinhVien">
+            </tbody>
+    </table>
+
+    <div class="stats">
+        <p>Tổng số sinh viên cả lớp: <span id="tongSV">0</span></p>
+        <p>Điểm trung bình cả lớp: <span id="diemTB">0.0</span></p>
+    </div>
+
+    <script>
+        
+        let students = [];
+        let filteredStudents = [];
+        let sortDirection = null; 
+
+        const inputHoTen = document.getElementById('hoTen');
+        const inputDiem = document.getElementById('diem');
+        const btnThem = document.getElementById('btnThem');
+        const tbody = document.getElementById('dsSinhVien');
+        const inputTimKiem = document.getElementById('timKiem');
+        const selectLoc = document.getElementById('locXepLoai');
+        const colDiem = document.getElementById('colDiem');
+        const sortArrow = document.getElementById('sortArrow');
+
+        // Hàm phân loại
+        function xepLoai(diem) {
+            if (diem >= 8.5) return "Giỏi";
+            if (diem >= 7.0) return "Khá";
+            if (diem >= 5.0) return "Trung bình";
+            return "Yếu";
+        }
+
+       
+        function applyFilters() {
+            const keyword = inputTimKiem.value.toLowerCase().trim(); // Lấy từ khóa, không phân biệt hoa thường
+            const loai = selectLoc.value;
+
+            
+            filteredStudents = students.filter(sv => {
+                const matchName = sv.hoTen.toLowerCase().includes(keyword); //
+                const matchLoai = (loai === "Tất cả") || (sv.xepLoai === loai);
+                return matchName && matchLoai;
+            });
+
+            
+            if (sortDirection === 'asc') {
+                filteredStudents.sort((a, b) => a.diem - b.diem);
+                sortArrow.textContent = '▲';
+            } else if (sortDirection === 'desc') {
+                filteredStudents.sort((a, b) => b.diem - a.diem);
+                sortArrow.textContent = '▼';
+            } else {
+                sortArrow.textContent = '';
+            }
+
+            renderTable();
+            updateStats(); 
+        }
+
+        
+        function renderTable() {
+            tbody.innerHTML = '';
+            
+            if (filteredStudents.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="no-result">Không có kết quả</td></tr>'; //
+                return;
+            }
+
+            filteredStudents.forEach((sv, index) => {
+                
+                const originalIndex = students.indexOf(sv); 
+                
+                const tr = document.createElement('tr');
+                if (sv.diem < 5.0) {
+                    tr.classList.add('row-warning'); 
+                }
+
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${sv.hoTen}</td>
+                    <td>${sv.diem.toFixed(1)}</td>
+                    <td>${sv.xepLoai}</td>
