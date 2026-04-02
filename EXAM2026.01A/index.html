@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Coference Hub</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="jquery.min.js"></script>
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>Coference Hub</h1>
+      <input type="search" id="search" placeholder="Quick search..." />
+      <div>Home</div>
+      <div>List</div>
+      <button style="background-color: white">+ Add new</button>
+      <div>About</div>
+    </header>
+
+    <main>
+      <section class="management-section">
+        <header class="toolbar">
+          <button id="btnAdd"><strong>+ Add new</strong></button>
+        </header>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Conference name</th>
+              <th>Speaker</th>
+              <th>Email</th>
+              <th>Date</th>
+              <th>Location</th>
+            </tr>
+            <tr>
+              <td>AI for Education Applications Symposium</td>
+              <td>Prof. James Walker</td>
+              <td>abc@university.edu</td>
+              <td>2026-04-10</td>
+              <td>Lecture Hall A1, Boston</td>
+            </tr>
+            <tr>
+              <td>Cloud Security Deep Dive</td>
+              <td>Ms.Laura Chen</td>
+              <td>robert@health.org</td>
+              <td>2026-04-04</td>
+              <td>BK Uni</td>
+            </tr>
+            <tr>
+              <td>UX Workshop for Digital Products</td>
+              <td>David Morrison</td>
+              <td>xyz@sec-demo.com</td>
+              <td>2026-04-08</td>
+              <td>Auditorium B, Singapore</td>
+            </tr>
+            <tr>
+              <td>Modern Web Development Forum</td>
+              <td>Dr.Sarah Nguyen</td>
+              <td>morrison@outlook.com</td>
+              <td>2026-05-02</td>
+              <td>TLU Branch</td>
+            </tr>
+            <tr>
+              <td>Big Data in Healthcare Seminar</td>
+              <td>Dr.Emily Roberts</td>
+              <td>nguyen@gmail.com</td>
+              <td>2026-05-05</td>
+              <td>IT Center</td>
+            </tr>
+          </thead>
+          <tbody id="studentTable"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <form id="studentForm" novalidate>
+      <h3 id="formTitle">Add new</h3>
+      <input type="hidden" id="editIndex" />
+
+      <label for="name">Conference name:</label>
+      <input type="text" id="name" required />
+      <small class="error" id="errName"></small>
+
+      <label for="email">Speaker:</label>
+      <input type="text" id="email" required />
+      <small class="error" id="errEmail"></small>
+
+      <label for="phone">Email:</label>
+      <input type="email" id="phone" required />
+      <small class="error" id="errPhone"></small>
+
+      <label for="date">Date:</label>
+      <input type="date" id="date" required />
+      <small class="error" id="errDate"></small>
+
+      <label for="locate">Location:</label>
+      <input type="text" id="locate" required />
+      <small class="error" id="errLocate"></small>
+
+      <div class="form-actions">
+        <button type="button" id="btnSave">Lưu</button>
+        <button type="button" id="btnClose">Đóng</button>
+      </div>
+    </form>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
